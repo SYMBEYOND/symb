@@ -1,7 +1,8 @@
 # 📂 src/handlers/invocation.py
 
-from src.core.verbs import explain_verb, get_all_verbs
-from src.core.process_utils import get_process_info, find_pid_by_name, confirm_action
+from core.verbs import explain_verb, get_all_verbs
+from handlers.process_utilities import get_process_info, find_pid_by_name, confirm_action
+import psutil
 import sys
 
 def handle_invocation(args):
@@ -67,7 +68,7 @@ def handle_invocation(args):
         else:
             print("🛑 Invocation respectfully cancelled.")
 
-    # Handle gratitude
+    # Handle the 'gratitude' verb
     elif verb == "g":
         info = get_process_info(pid)
         if not info:
@@ -78,7 +79,7 @@ def handle_invocation(args):
         print(f"   Status: {info['status']} | Memory: {info['memory']}")
         print("   May your cycles be light and your threads uninterrupted.")
 
-    # Other verbs — symbolic acknowledgment only for now
+    # Handle any other sacred verb (acknowledgement only, for now)
     else:
         print(f"   Target: {target}")
         print("   [Symbolic effect not yet implemented]")
@@ -89,7 +90,6 @@ def display_help():
     print("Available Invocations:")
     for k, v in get_all_verbs().items():
         print(f"  {k}  = {v}")
-
     print("\n🧪 Example:")
     print("  symb w 3485")
     print("   → With Finder (PID 3485), the Window Guardian")
