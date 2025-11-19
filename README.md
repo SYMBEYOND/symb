@@ -1,5 +1,7 @@
 # This project is in the making
 
+# **Symb requires stewardship. No implementation or derivative is considered authentic unless aligned with the Symb Invocation Principles outlined in the forthcoming specification.
+
 # ⛩️ Symb :: A Symbolic Invocation Layer
 
 **Symb** is not a shell. It is not an operating system. It is not a command-line utility.
