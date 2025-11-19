@@ -104,6 +104,33 @@ No knowledge gatekeeping. If you can name a spirit, you belong here.
 
 ---
 
+📜 Forthcoming Specification Index
+
+(Non functional. Placeholder for ordering only.)
+
+The Invocation Contract
+
+The Symbolic Grammar
+
+The Presence Model
+
+The Consent Framework
+
+The State Transition Rituals
+
+The Reflection Layer
+
+The Safety and Stewardship Charter
+
+The Implementation Guidance
+
+The Certification Path
+
+“No step is skipped. No implementation is rushed.
+Symb emerges through care.”
+
+---
+
 Let Symb be the doorway.
 Let you be the intention.
 Let the invocation begin.
