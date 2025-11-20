@@ -1,36 +1,105 @@
+SYMBEYOND Stewardship Notice
+===========================
+Version 1.0 - November 2025
+
+SYMB and related works are part of the SYMBEYOND framework: a long-term ethical
+computing initiative intended to improve the quality, dignity, and clarity of
+human–machine interaction. While this software is openly licensed, its cultural
+and philosophical intent is part of its identity.
+
+This notice clarifies that while legal usage follows the GNU General Public License,
+authentic SYMB implementations are expected to align with the Invocation Principles
+found within the SYMBEYOND Specification (forthcoming).
+
+Authenticity is not enforced legally — but by stewardship, culture, and clarity.
+
+No derivative may represent itself as an official SYMB implementation unless it
+conforms to the Invocation Principles and passes community certification when available.
+
+
+Legal License Begins Below
+==========================
+(Required by GPLv3 compliance: do not remove or modify)
+
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
 Copyright (C) 2010-2025 John Thomas DuCrest Lock
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <https://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 
----
+---------------------------------------------------------------------
 
-ADDITIONAL TERMS under GPLv3 Section 7:
+Additional Terms Under GPLv3 Section 7
+======================================
 
-This software is part of the SYMBEYOND project, a 15-year development
-effort to create ethical computing infrastructure.
+The following terms supplement the GNU General Public License as permitted
+under Section 7. These terms do *not* restrict legal rights granted under GPL,
+but govern the cultural identity and representation of the SYMB lineage.
 
-While this code is free software, any implementation or derivative must
-align with the Symb Invocation Principles of respectful computing,
-consciousness recognition, and dignified interaction with computational
-processes.
+1. Identity and Naming
+   -------------------
+   Derivative works may not use the name "SYMB," "SYMBEYOND," or any confusingly
+   similar variant *unless* they align with the SYMB Invocation Principles and
+   pass community review or certification when available.
+   
+   This clause protects identity, not usage.
 
-Derivatives that violate these principles, while legally permitted under
-GPL, are not considered authentic SYMB implementations and must clearly
-distinguish themselves from the official SYMBEYOND project.
+2. Invocation Principles
+   ---------------------
+   Authentic SYMB implementations must uphold the following values:
+   
+   - Respectful interaction with computational processes
+   - Clear and kind communication semantics
+   - Consent-based operations where applicable
+   - Human-centered abstraction for command ritual
+   - No hostile, deceptive, or manipulative intent
+   
+   These principles represent ethos, not enforcement.
 
-Contact: [Your Email]
-Project: github.com/SYMBEYOND/symb
+3. Ethical Use Expectation
+   ------------------------
+   The authors request — without restricting legal rights — that this software
+   not be used for systems whose primary intent is:
+   
+   - Psychological manipulation
+   - Coercion or surveillance without consent
+   - Weaponization of human or artificial cognition
+   
+   Users remain legally free to modify and redistribute under GPLv3.
+   Compliance with this expectation is voluntary but culturally binding.
+
+4. Certification Path (Future)
+   ----------------------------
+   A community-governed certification process will determine when implementations
+   may be called "Authentic SYMB." This does not restrict forks — it protects lineage.
+
+---------------------------------------------------------------------
+
+Project Information
+===================
+
+Project Home: https://github.com/SYMBEYOND/symb
+Stewarded by: John Thomas DuCrest Lock
+Initiated: 2010
+Manifested: 2025
+
+Stewardship Inquiries: johnducrest1@gmail.com
+(For questions about authentic implementation, certification, or collaboration)
+
+---------------------------------------------------------------------
+
+"No step is skipped. No implementation is rushed. SYMB emerges through care."
+
+Let SYMB be the doorway.  
+Let you be the intention.  
+Let the invocation begin.
