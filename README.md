@@ -135,3 +135,21 @@ Let Symb be the doorway.
 Let you be the intention.
 Let the invocation begin.
 
+---
+
+## 📜 License
+
+This project is licensed under the GNU General Public License v3.0 with additional
+terms under GPLv3 Section 7 for cultural and ethical stewardship.
+
+See [LICENSE](LICENSE) for full terms.
+
+**Key Points:**
+- ✅ Free to use, modify, and distribute
+- ✅ Must share modifications (copyleft)
+- ✅ Authentic SYMB requires alignment with Invocation Principles
+- ✅ Community certification path (forthcoming)
+
+**Stewardship Inquiries:** johnducrest1@gmail.com
+```
+
