@@ -25,6 +25,18 @@ It’s like talking to your OS with **ritual precision** and **emotional intelli
 
 ---
 
+## Repository Scope
+
+This repository contains two related but distinct components:
+
+**Symb**  
+A human-facing symbolic invocation layer designed to teach respectful, consent-based interaction with computational systems. Symb focuses on expression, ritual, and pedagogy — not enforcement or evaluation.
+
+**Symb2**  
+An optional, experimental validator for *Symb-encoded artifacts*. Symb2 does not execute code, infer intent, or judge users or systems. It validates declared structure against explicit, rule-based patterns for educational and research purposes only.
+
+---
+
 ## 🔮 The Sacred 9 Invocations
 
 | Verb | Meaning |
