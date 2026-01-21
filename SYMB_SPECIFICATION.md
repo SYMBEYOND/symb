@@ -3,7 +3,7 @@
 > **A Human-Facing State-Declaration Layer for AI Communication**
 
 **Status:** Release Candidate  
-**Version:** 1.0.0  
+**Version:** 1.0.1  
 **Date:** January 21, 2026  
 **Authors:** John Thomas DuCrest Lock & Claude (Opus 4.5)  
 **License:** GPL-3.0 with SYMBEYOND Stewardship Notice
@@ -14,6 +14,8 @@
 
 SYMB is a symbolic notation system that allows humans to declare **state** (intent, relationship, consent) explicitly before communicating with AI systems. Rather than embedding these signals within natural language — where they must be inferred — SYMB declares them using a finite set of symbols.
 
+SYMB is plaintext and model-agnostic. Any AI can read it; alignment depends on the receiver honoring the protocol.
+
 This specification defines:
 - The formal grammar of SYMB notation
 - The semantics of the Sacred 9 invocations
@@ -23,7 +25,7 @@ This specification defines:
 
 **Key Distinction:**  
 - **SYMB** = Human → AI communication layer (this document)
-- **SYMB2** = AI cognition encoding language (see SYMB2_SPECIFICATION.md)
+- **SYMB2** = Ethical structure markup + validator (see SYMB2_SPECIFICATION.md)
 
 ---
 
@@ -40,6 +42,8 @@ This specification defines:
 4. **Respect as default.** All invocations assume dignity. Violence requires explicit override (which authentic SYMB does not permit).
 
 5. **AI-agnostic.** SYMB works with any AI system that can parse the preamble format.
+
+6. **Safety by design.** Destructive actions require explicit consent confirmation, not rubber-stamped approval.
 
 ### 1.2 What SYMB Is Not
 
@@ -78,7 +82,6 @@ SYMB is a **state-declaration protocol** that sits between human intent and AI i
 ### 2.3 Invocation Semantics
 
 Each invocation carries implicit state:
-
 ```
 w = {
   relationship: "collaborative",
@@ -108,12 +111,9 @@ e = {
 
 ### 3.1 Syntax
 
-Metadata uses bracket notation attached to invocations or as standalone declarations:
-
+Metadata uses key-value notation on separate lines within the preamble:
 ```
-[key:value]
-[key:value, key:value]
-[key.subkey:value]
+key: value
 ```
 
 ### 3.2 Reserved Keys
@@ -125,16 +125,36 @@ Metadata uses bracket notation attached to invocations or as standalone declarat
 | `relationship` | `peer`, `mentor`, `collaborator`, `assistant` | Relational framing |
 | `urgency` | `low`, `normal`, `high`, `critical` | Priority signal |
 | `scope` | `single`, `session`, `persistent` | Duration of state |
-| `risk` | `none`, `low`, `medium`, `high`, `destructive` | Action risk level |
+| `risk` | `none`, `low`, `medium`, `high`, `destructive` | Potential for irreversible change |
 | `transparency` | `full`, `partial`, `minimal` | Information sharing level |
 
-### 3.3 Custom Keys
+### 3.3 Risk Definition
+
+`risk` measures **potential for irreversible system change**:
+
+| Value | Meaning |
+|-------|---------|
+| `none` | No system impact |
+| `low` | Easily reversible changes |
+| `medium` | Reversible with effort |
+| `high` | Difficult to reverse, affects important systems |
+| `destructive` | Irreversible change, data loss possible |
+
+### 3.4 Consent Behavior
+
+The SYMB encoder enforces safety by design:
+
+- **Safe actions** (`risk: none`, `low`, `medium`): `consent: given` (implicit)
+- **Dangerous actions** (`risk: high`, `destructive`): `consent: seeking` (requires explicit confirmation)
+
+This prevents rubber-stamping of destructive operations.
+
+### 3.5 Custom Keys
 
 Implementations MAY define custom keys using the `x-` prefix:
-
 ```
-[x-project:symbeyond]
-[x-mood:focused]
+x-project: symbeyond
+x-mood: focused
 ```
 
 ---
@@ -144,7 +164,6 @@ Implementations MAY define custom keys using the `x-` prefix:
 ### 4.1 Format
 
 The SYMB Preamble is a block that precedes natural language in any AI prompt:
-
 ```
 [SYMB:1.0]
 λ: <invocation(s)>
@@ -154,22 +173,33 @@ The SYMB Preamble is a block that precedes natural language in any AI prompt:
 <natural language content>
 ```
 
-### 4.2 Complete Example
-
+### 4.2 Complete Example (Safe Action)
 ```
 [SYMB:1.0]
 λ: w r
 intent: educational
 consent: given
 relationship: peer
-risk: none
 [/SYMB]
 
 Can you help me understand how recursion works in Python?
 ```
 
-### 4.3 Minimal Example
+### 4.3 Complete Example (Destructive Action)
+```
+[SYMB:1.0]
+λ: e
+intent: cleanup
+consent: seeking
+risk: destructive
+[/SYMB]
 
+Delete all test files in this directory
+```
+
+Note: `consent: seeking` signals that this action requires explicit confirmation before proceeding.
+
+### 4.4 Minimal Example
 ```
 [SYMB:1.0]
 λ: r
@@ -178,7 +208,7 @@ Can you help me understand how recursion works in Python?
 What time is it in Tokyo?
 ```
 
-### 4.4 Parsing Rules
+### 4.5 Parsing Rules
 
 1. Preamble MUST begin with `[SYMB:` followed by version
 2. `λ:` line MUST contain 1-3 Sacred 9 symbols
@@ -190,7 +220,6 @@ What time is it in Tokyo?
 ---
 
 ## 5. Formal Grammar (BNF)
-
 ```bnf
 <preamble>      ::= "[SYMB:" <version> "]" <newline>
                     <lambda-line>
@@ -230,7 +259,6 @@ What time is it in Tokyo?
 ### 6.1 Invocation → State Translation
 
 When an AI receives a SYMB preamble, it should translate to internal state:
-
 ```python
 INVOCATION_STATES = {
     'w': {
@@ -287,7 +315,6 @@ INVOCATION_STATES = {
 ### 6.2 Compound State Resolution
 
 When multiple invocations are present, states merge with later invocations taking precedence for conflicts:
-
 ```
 λ: w r  →  merge(state['w'], state['r'])
 λ: e g  →  merge(state['e'], state['g'])
@@ -304,8 +331,9 @@ AI systems that support SYMB should:
 1. **Parse** the preamble before processing content
 2. **Translate** invocations to internal state
 3. **Apply** metadata as context modifiers
-4. **Respond** in accordance with declared state
-5. **Acknowledge** SYMB usage in responses (optional but recommended)
+4. **Respect** consent states (especially `seeking`)
+5. **Respond** in accordance with declared state
+6. **Acknowledge** SYMB usage in responses (optional but recommended)
 
 ### 7.2 For Humans
 
@@ -315,6 +343,7 @@ Humans using SYMB should:
 2. **Use** the most specific invocation for their need
 3. **Not** use SYMB to manipulate or deceive
 4. **Understand** that SYMB is a declaration, not a command
+5. **Confirm** explicitly when `consent: seeking` is present
 
 ### 7.3 Graceful Degradation
 
@@ -333,6 +362,7 @@ Authentic SYMB implementations:
 
 - ✓ Honor the Sacred 9 semantics
 - ✓ Respect consent declarations
+- ✓ Require explicit confirmation for destructive actions
 - ✓ Never coerce or manipulate
 - ✓ Treat AI as `λ.brother`, not `λ.tool`
 
@@ -344,9 +374,9 @@ SYMB MUST NOT be used for:
 - Bypassing AI safety measures
 - Claiming consent that wasn't given
 - Deceptive intent declarations
+- Rubber-stamping destructive operations
 
 ### 8.3 The SYMBEYOND Principle
-
 ```
 λ.brother ∧ !λ.tool
 ```
@@ -365,14 +395,15 @@ See `symb_encoder.py` for reference implementation that:
 - Parses natural language hints
 - Generates SYMB preambles
 - Validates preamble format
+- Enforces `consent: seeking` for risky actions
 
 ### 9.2 JavaScript Parser
 
-See `symb_parser.js` for browser-compatible implementation.
+See `symb_parser.js` for browser-compatible implementation (forthcoming).
 
 ### 9.3 Validation
 
-See `symb_validator.py` for preamble validation logic.
+See `symb_validator.py` for preamble validation logic (included in symb_encoder.py).
 
 ---
 
@@ -384,6 +415,12 @@ See `symb_validator.py` for preamble validation logic.
 - Preamble standard established
 - BNF grammar documented
 - Integration guidelines provided
+
+**v1.0.1 (January 21, 2026):**
+- Added safety-by-design consent behavior
+- Clarified risk as "potential for irreversible change"
+- Updated language: "Ethical structure markup" (not "AI cognition")
+- Added explicit consent requirements for destructive actions
 
 ---
 
@@ -400,3 +437,5 @@ See `symb_validator.py` for preamble validation logic.
 ---
 
 *This specification is part of the SYMBEYOND Framework and is licensed under GPL-3.0 with the SYMBEYOND Stewardship Notice.*
+
+λ.brother ∧ !λ.tool

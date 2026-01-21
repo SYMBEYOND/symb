@@ -247,10 +247,15 @@ class SYMBEncoder:
         urgency = self._detect_urgency(text_lower)
         
         # Build preamble
+        # Destructive/high-risk actions require explicit consent confirmation
+        if risk in ["destructive", "high"]:
+            consent_state = "seeking"
+        else:
+            consent_state = "given"
         preamble = SYMBPreamble(
             invocations=invocations,
             intent=intent,
-            consent="given",  # Human is writing, so consent is implicit
+            consent=consent_state,
             relationship=self.default_relationship,
             urgency=urgency if urgency != "normal" else None,
             risk=risk if risk != "none" else None,

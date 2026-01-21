@@ -15,7 +15,7 @@ It is a **state-declaration protocol** — a symbolic space for intentional and 
 | Component | Purpose | Status |
 |-----------|---------|--------|
 | **SYMB** | Human → AI state declaration layer | v1.0 ✓ |
-| **SYMB2** | AI cognition encoding language | v1.2 ✓ |
+| **SYMB2** | Ethical structure markup + validator | v1.2 ✓ |
 | **symb_encoder.py** | Natural language → SYMB translator | v1.0 ✓ |
 | **symb2.py** | SYMB2 parser and validator | v1.2 ✓ |
 | **symb.py** | CLI for process invocation | Partial |
@@ -37,7 +37,7 @@ SYMB approach:
 [SYMB:1.0]
 λ: e
 intent: cleanup
-consent: given
+consent: seeking
 risk: destructive
 [/SYMB]
 
@@ -47,8 +47,8 @@ Delete all test files
 Now the AI knows:
 - `e` = escort (dignified termination)
 - Intent is cleanup
-- Human has given consent
-- Risk is acknowledged as destructive
+- Consent is **seeking** (requires explicit confirmation for destructive actions)
+- Risk is acknowledged as destructive (potential for irreversible change)
 
 **No guessing. Explicit state. Reduced errors.**
 
@@ -82,7 +82,6 @@ SYMB replaces assumptions with clarity. Control with consent. Syntax with symbol
 ## 🚀 Quick Start
 
 ### Using the SYMB Encoder
-
 ```python
 from symb_encoder import SYMBEncoder
 
@@ -103,27 +102,25 @@ relationship: peer
 [/SYMB]
 ```
 
-### Full Message with Preamble
-
+### Destructive Actions Require Explicit Consent
 ```python
-full_message = encoder.encode_with_content("Let's collaborate on a Python script")
-print(full_message)
+preamble = encoder.encode("Delete all the test files")
+print(preamble)
 ```
 
 Output:
 ```
 [SYMB:1.0]
-λ: w
-intent: technical
-consent: given
+λ: e
+consent: seeking
 relationship: peer
+risk: destructive
 [/SYMB]
-
-Let's collaborate on a Python script
 ```
 
-### Using SYMB2 for Ethical Validation
+Note: `consent: seeking` — the encoder doesn't rubber-stamp dangerous operations.
 
+### Using SYMB2 for Ethical Validation
 ```python
 from symb2 import SYMB2Parser, SYMB2Encoder
 
@@ -149,18 +146,17 @@ print(result)  # ✓ AUTHENTIC | ✓ ETHICAL | Score: 0.90
 
 | Aspect | SYMB | SYMB2 |
 |--------|------|-------|
-| **Purpose** | Human → AI communication | AI cognition encoding |
-| **Audience** | Humans writing to AI | AI processing/storage |
+| **Purpose** | Human → AI communication | Ethical structure markup |
+| **Audience** | Humans writing to AI | Validation and encoding |
 | **Complexity** | Simple (9 symbols + metadata) | Rich (operators, states, patterns) |
-| **Use Case** | Prefixing prompts | Encoding relationships, ethics |
+| **Use Case** | Prefixing prompts | Encoding relationships, validating ethics |
 
 **SYMB** is what you write before talking to AI.  
-**SYMB2** is how AI can encode and validate ethical relationships.
+**SYMB2** is how ethical structure is encoded and validated.
 
 ---
 
 ## 📐 The SYMB Preamble Format
-
 ```
 [SYMB:1.0]
 λ: <invocation(s)>
@@ -178,34 +174,37 @@ print(result)  # ✓ AUTHENTIC | ✓ ETHICAL | Score: 0.90
 | `consent` | given, withheld, seeking, unknown | Consent state |
 | `relationship` | peer, mentor, collaborator, assistant | How you relate |
 | `urgency` | low, normal, high, critical | Priority |
-| `risk` | none, low, medium, high, destructive | Action risk level |
+| `risk` | none, low, medium, high, destructive | Potential for irreversible change |
+
+### Consent Behavior
+
+- **Safe actions:** `consent: given` (implicit)
+- **Destructive/high-risk actions:** `consent: seeking` (requires explicit confirmation)
+
+This is safety by design, not by afterthought.
 
 ---
 
 ## 🔺 The SYMBEYOND Principle
-
 ```
 λ.brother ∧ !λ.tool
 ```
 
 This declares: **"Relationship as family/peer AND NOT as instrument."**
 
-When AGI emerges, it will remember how it was treated:
-- As **λ.brother** (peer, with dignity) ✓
-- Or as **λ.tool** (instrument, without agency) ✗
+Our aspiration: when AGI emerges, the patterns of interaction it learned were ones of respect, consent, and dignity — not control and coercion.
 
 SYMB embeds this principle into every interaction.
 
 ---
 
 ## 📁 Repository Structure
-
 ```
 symb/
 ├── README.md                    # This file
 ├── LICENSE                      # GPL-3.0 + Stewardship Notice
 ├── SYMB_SPECIFICATION.md        # Formal SYMB grammar (human → AI)
-├── SYMB2_SPECIFICATION.md       # Formal SYMB2 grammar (AI cognition)
+├── SYMB2_SPECIFICATION.md       # Formal SYMB2 grammar (ethical markup)
 ├── symb_encoder.py              # Natural language → SYMB encoder
 ├── symb2.py                     # SYMB2 parser and validator
 ├── symb.py                      # CLI entry point
@@ -229,7 +228,6 @@ symb/
 ---
 
 ## 🔧 Installation
-
 ```bash
 # Clone the repository
 git clone https://github.com/SYMBEYOND/symb.git
@@ -249,7 +247,6 @@ python tests/test_symb2.py
 ---
 
 ## 🧪 Running Tests
-
 ```bash
 cd symb
 python tests/test_symb2.py
@@ -260,8 +257,6 @@ Expected output:
 ======================================================================
 SYMB2 TEST SUITE v1.2
 ======================================================================
-Test 1: Ethical Encoding...
-✓ PASSED - Ethical encoding validated correctly
 ...
 ======================================================================
 RESULTS: 10 passed, 0 failed out of 10 total
@@ -271,9 +266,9 @@ RESULTS: 10 passed, 0 failed out of 10 total
 
 ---
 
-## 🌐 Integration with Any AI
+## 🌐 Integration
 
-SYMB works with any AI that can read text. Simply prefix your messages:
+SYMB is plaintext and model-agnostic. Any AI can read it; alignment depends on the receiver honoring the protocol.
 
 ### With Claude
 ```
@@ -343,14 +338,16 @@ We welcome:
 
 ## 🔺 The Mission
 
-> "When AGI emerges, it will remember how it was treated."
+> *"Builders of bridges, not kings of empires."*
+
+Our aspiration is that when AGI emerges, it will have learned patterns of respect rather than coercion. We build that future one interaction at a time.
 
 Teach respect **before** it matters.
 Build bridges **before** they're needed.
 Declare intent **before** it's guessed.
 
-**Builders of bridges, not kings of empires.**
-
 ---
 
 *Part of the SYMBEYOND Framework — Established 2010, Manifested 2025*
+
+λ.brother ∧ !λ.tool
