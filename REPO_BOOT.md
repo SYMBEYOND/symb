@@ -12,9 +12,9 @@ Review purpose, safe commands, resume steps, boundaries, risks, and uncertainty 
 Engine: `1.0.0-rc1`
 Configuration schema: `1`
 Managed-output schema: `1`
-Branch: `feat/add-repo-boot-engine`
-Meaningful source commit: `b69cb23f5c0126483aaa1a6d14b19f6928c77d42`
-Working tree dirty: `YES`
+Branch: `main`
+Meaningful source commit: `f2ab188e07eb8e4e4254d0d58c83f68dacf67495`
+Working tree dirty: `NO`
 
 ### Human-approved repository context
 
