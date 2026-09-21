@@ -10,6 +10,10 @@ It is a **state-declaration protocol** — a symbolic space for intentional and 
 
 ---
 
+## Using an AI Assistant?
+
+Start with [`REPO_BOOT.md`](REPO_BOOT.md), a quick orientation for any LLM (Claude, ChatGPT, or other) on what this repo is, how it works, and how to collaborate with it effectively.
+
 ## 📦 What's In This Repository
 
 | Component | Purpose | Status |
