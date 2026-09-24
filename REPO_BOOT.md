@@ -28,14 +28,14 @@ Engine: `1.0.0-rc1`
 Configuration schema: `1`
 Managed-output schema: `1`
 Branch: `main`
-Meaningful source commit: `50ff5095d132bd3c47479b170d321f8b8d71512c`
+Meaningful source commit: `b800f8ddd077f44b934ea53d8aa4d0ad442a42d2`
 Working tree dirty: `NO`
 
 ### Human-approved repository context
 
-Purpose: Repository state and orientation management
-Audience: Builders, maintainers, and AI collaborators
-Status: Production
+Purpose: Define and implement SYMB state declarations and SYMB2 ethical-structure markup for explicit human-AI interaction context.
+Audience: Builders, maintainers, contributors, and human or AI collaborators working with the SYMB and SYMB2 protocols.
+Status: Active implementation; README identifies SYMB v1.0 and SYMB2 v1.2 as complete while the symb.py CLI remains partial.
 
 ### Authority and uncertainty
 
