@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "repository": {
-    "purpose": "Repository state and orientation management",
-    "audience": "Builders, maintainers, and AI collaborators",
-    "status": "Production"
+    "purpose": "Define and implement SYMB state declarations and SYMB2 ethical-structure markup for explicit human-AI interaction context.",
+    "audience": "Builders, maintainers, contributors, and human or AI collaborators working with the SYMB and SYMB2 protocols.",
+    "status": "Active implementation; README identifies SYMB v1.0 and SYMB2 v1.2 as complete while the symb.py CLI remains partial."
   },
   "orientation": {
     "important_files": [],
